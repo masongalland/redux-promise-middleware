@@ -3,18 +3,34 @@ import logo from './logo.svg';
 import './App.css';
 import { connect } from 'react-redux';
 
+import {getPeople} from './ducks/starwars';
+
 class App extends Component {
+
+
+
+  componentDidMount() {
+    
+  }
+
+
   render() {
+    
+    const people = this.props.people.map((person, i) => (
+      <div key={i}>{person.name}</div>
+    ))
+
     return (
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>{this.props.viewData}</h2>
-          <h2>{this.props.anotherProp}</h2>
+          <h2>Redux Promise Middleware</h2>
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        
+        <button onClick={this.props.getPeople}>Get Star Wars People</button>
+        <div>
+          {this.props.loading ? 'fetching people...' : people}
+        </div>
       </div>
     );
   }
@@ -22,9 +38,9 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    viewData: state.testView,
-    anotherProp: state.newData
+    people: state.starwars.people,
+    loading: state.starwars.loading
   }
 }
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, {getPeople})(App);

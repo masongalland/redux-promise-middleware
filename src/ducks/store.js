@@ -1,6 +1,15 @@
-import {createStore} from 'redux';
-import reducer from './reducer';
+import {createStore, applyMiddleware, combineReducers} from 'redux';
+import starwarsReducer from './starwars';
+import reduxPromiseMiddleware from 'redux-promise-middleware';
 
-export default createStore(reducer);
+const reducer = combineReducers({
+    starwars: starwarsReducer
+})
+
+export default createStore(
+    reducer,
+    applyMiddleware(reduxPromiseMiddleware())
+);
+
 
 
