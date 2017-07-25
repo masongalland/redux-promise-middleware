@@ -1,15 +1,16 @@
 const initialState = {
-    testView: 'I\'m data that lives on state'
+    testView: 'I\'m data that lives on state',
+    newData: "I'm new data"
 };
 
 const MY_ACTION_TYPE = "MY_ACTION_TYPE"
 
 
 export default function reducer(state = initialState, action) {
-    switch(action.type) {
-        case MY_ACTION_TYPE:
-        return 
-    }
+    // switch(action.type) {
+    //     case MY_ACTION_TYPE:
+    //     return 
+    // }
 
     return state;
 }
